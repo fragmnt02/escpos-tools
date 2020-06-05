@@ -37,7 +37,10 @@ foreach ($commands as $cmd) {
     if ($cmd -> isAvailableAs('TextContainer')) {
         // Add text to line
         // TODO could decode text properly from legacy code page to UTF-8 here.
+        $search = explode(",","φ,Θ,á,╤,Θ,═,±,í,≤");
+        $replace = explode(",","í,é, ,Ñ,Ú,Í,ñ,!,ó");
         $spanContentText = $cmd -> getText();
+        $spanContentText = str_replace($search, $replace, $spanContentText);
         $lineHtml .= span($formatting, $spanContentText);
     }
     if ($cmd -> isAvailableAs('LineBreak') && $skipLineBreak) {
